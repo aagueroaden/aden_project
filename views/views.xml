@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="aden_project.list">
+      <field name="name">aden_project list</field>
+      <field name="model">aden_project.aden_project</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="aden_project.action_window">
+      <field name="name">aden_project window</field>
+      <field name="res_model">aden_project.aden_project</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="aden_project.action_server">
+      <field name="name">aden_project server</field>
+      <field name="model_id" ref="model_aden_project_aden_project"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="aden_project" id="aden_project.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="aden_project.menu_1" parent="aden_project.menu_root"/>
+    <menuitem name="Menu 2" id="aden_project.menu_2" parent="aden_project.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="aden_project.menu_1_list" parent="aden_project.menu_1"
+              action="aden_project.action_window"/>
+    <menuitem name="Server to list" id="aden_project" parent="aden_project.menu_2"
+              action="aden_project.action_server"/>
+-->
+  </data>
+</odoo>

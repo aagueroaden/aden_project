@@ -25,7 +25,8 @@ Long description of module's purpose
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'aden_project_task_views.xml',
+        'views/aden_project_task_views.xml',
+        'views/aden_teams_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -37,5 +38,7 @@ Long description of module's purpose
     'application': True,
 
     'auto_install': False,
+
+    'license': 'LGPL-3',
 
 }

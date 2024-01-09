@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_users_form_aden" model="ir.ui.view">
+        <field name="name">users.form.aden</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <group>
+                    <field name="team_id"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_users_tree_aden" model="ir.ui.view">
+        <field name="name">users.tree.aden</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree"/>
+        <field name="arch" type="xml">
+
+            <field name="login" position="after">
+                <field name="team_id"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_aden_project_team_tree" model="ir.ui.view">
+        <field name="name">aden.project.team.tree</field>
+        <field name="model">aden_project.team</field>
+        <field name="arch" type="xml">
+
+            <tree string="Project Teams">
+                        <field name="name"/>
+                        <field name="team_area"/>
+                        <field name="user_ids_members"/>
+                        <field name="task_ids"/>
+            </tree>
+
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="aden_project_team">
+        <field name="name">Project Team</field>
+        <field name="res_model">aden_project.team</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem
+    name="Projects Teams"
+    id="menu_project_teams"
+    parent="project.menu_project_config"
+    action="aden_project_team"
+    />
+
+    <!-- <menuitem
+    name="Users"
+    id="menu_project_teams"
+    parent="project.menu_project_config"
+    action="aden_project_users"
+    /> -->
+
+</odoo>

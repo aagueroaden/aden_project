@@ -1,13 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <!-- Add the field prioridad to the kanban view -->
     <record id="view_task_kanban_aden" model="ir.ui.view">
         <field name="name">project.task.kanban.aden</field>
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_kanban"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@class='oe_kanban_details']" position="inside">
-                <field name="priority" widget="priority"/>
+
+            <xpath expr="//div[hasclass('oe_kanban_bottom_right')]" position="inside">
+                    <group>
+                        <field name="prioridad" />
+                    </group>
+                    <!-- <field name="stage_id"/> -->
             </xpath>
+
+            <xpath expr="//div[hasclass('o_kanban_record_top')]" position="inside">
+                    <field name="stage_id"/>
+            </xpath>
+
         </field>
     </record>
+
+    <!-- Add field prioridad to the form view -->
+    <record id="view_task_form2_aden" model="ir.ui.view">
+        <field name="name">project.task.form.aden</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+
+            <!-- hide the original priority parameter, to the left of the name -->
+            <!-- <xpath expr="//field[@name='priority']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+            </xpath> -->
+                <field name="partner_id" position="after">
+                        <field name="team_id"/>
+
+                </field>
+
+                <!-- shows the priority after the user_ids -->
+                <field name="user_ids" position="after">
+                    <field name="prioridad"/>
+                </field>
+
+        </field>
+    </record>
+
+    <!-- Add field prioridad to the list view -->
+    <record id="project_task_view_tree_main_base_aden" model="ir.ui.view">
+        <field name="name">project.task.view.tree.main.base.aden</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.project_task_view_tree_main_base"/>
+        <field name="arch" type="xml">
+
+            <field name="user_ids" position="after">
+                <!-- <field name="priority" widget="priority_switch" class="me-3"/> -->
+                <field name="prioridad"/>
+            </field>
+
+        </field>
+    </record>
+
 </odoo>

@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_aden_task,access aden_project.aden_task,model_aden_project_aden_task,base.group_user,1,1,1,1
+access_aden_project_team,access aden_project.team,model_aden_project_team,base.group_user,1,1,1,1

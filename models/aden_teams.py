@@ -15,10 +15,17 @@ class User(models.Model):
 class Team(models.Model):
     _name = "aden_project.team"
     _description = "Teams for the Aden project system, allow users to be part of a team"
-    # _inherit = "res.groups"
 
     name = fields.Char(string='Team Name', required=True)
     team_area = fields.Char(string='Team Area', required=True)
+
+    project_ids = fields.One2many(
+        comodel_name='project.project',
+        inverse_name="team_id",
+        string='Project',
+        readonly=True
+    )
+
     user_ids_members = fields.One2many(
         comodel_name='res.users',  # uses res.users instead of res.partner to not show the sales fields, etc
         inverse_name="team_id",

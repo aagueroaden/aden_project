@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_aden_project_resources_tree" model="ir.ui.view">
+        <field name="name">aden.project.resources.tree</field>
+        <field name="model">aden_project.resources</field>
+        <field name="arch" type="xml">
+
+            <tree string="Recursos">
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="reference_link"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="aden_project_resources">
+        <field name="name">Resources</field>
+        <field name="res_model">aden_project.resources</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+    name="Resources"
+    id="menu_project_resources"
+    parent="project.menu_project_config"
+    action="aden_project_resources"
+    />
+
+</odoo>

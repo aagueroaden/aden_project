@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_aden_project_team,access aden_project.team,model_aden_project_team,base.group_user,1,1,1,1
+access_aden_project_team,access aden_project.team,model_aden_project_team,base.group_user,1,0,0,0
+access_aden_project_resources,access aden_project.resources,model_aden_project_resources,base.group_user,1,1,1,0
+access_aden_project_category,access aden_project.category,model_aden_project_category,base.group_user,1,0,0,0
+access_aden_project_subcategory,access aden_project.subcategory,model_aden_project_subcategory,base.group_user,1,0,0,0

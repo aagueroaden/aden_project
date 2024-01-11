@@ -16,7 +16,23 @@ class AdenTask(models.Model):
 
     team_id = fields.Many2one(
         comodel_name="aden_project.team",
-        string="Project Team",
+        string="Equipo asignado",
+    )
+
+    resource_ids = fields.One2many(
+        comodel_name='aden_project.resources',  # uses res.users instead of res.partner to not show the sales fields, etc
+        inverse_name="task_id",
+        string='Recurso',
+    )
+
+    category_id = fields.Many2one(
+        comodel_name="aden_project.category",
+        string="Categoria"
+    )
+
+    subcategory_id = fields.Many2one(
+        comodel_name="aden_project.subcategory",
+        string="Sub-Categoria"
     )
 
     @api.onchange('user_ids')

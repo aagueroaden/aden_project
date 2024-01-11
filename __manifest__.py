@@ -27,6 +27,10 @@ Long description of module's purpose
         'views/templates.xml',
         'views/aden_project_task_views.xml',
         'views/aden_teams_views.xml',
+        'views/aden_project_project_views.xml',
+        'views/aden_resources_views.xml',
+        'views/aden_category_views.xml',
+        'views/aden_subcategory_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

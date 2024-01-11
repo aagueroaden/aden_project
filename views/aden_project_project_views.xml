@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- modifying the list view -->
+    <record id="view_project_aden" model="ir.ui.view">
+        <field name="name">project.project.tree.aden</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+
+            <field name="user_id" position="after">
+                <field name="team_id"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!-- modifying the form view -->
+    <record id="edit_project_aden" model="ir.ui.view">
+        <field name="name">project.project.form.aden</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <field name="tag_ids" position="before">
+                <field name="team_id"/>
+            </field>
+
+        </field>
+    </record>
+
+    <!-- modifying the kanban view -->
+    <record model="ir.ui.view" id="view_project_kanban_aden">
+        <field name="name">project.project.kanban.aden</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project_kanban"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
+                <group>
+                    <p>Equipo <field name="team_id" /></p>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

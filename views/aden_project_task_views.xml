@@ -9,16 +9,20 @@
         <field name="arch" type="xml">
 
             <xpath expr="//div[hasclass('oe_kanban_bottom_right')]" position="inside">
-                    <group>
-                        <field name="prioridad" />
-                    </group>
-                    <!-- <field name="stage_id"/> -->
+                <group>
+                    <field name="prioridad" />
+                    <!-- agrego el equipo de forma invisible para que: 
+                    cuando se asigna un usuario a una task en va lista kanban, 
+                    tambien se le asigne el equipo, 
+                    ya que si la vista kanban no tiene el campo de team, 
+                    no va a asignar equipo a la task -->
+                    <field name="team_id" invisible="1"/>
+                </group>
             </xpath>
 
             <xpath expr="//div[hasclass('o_kanban_record_top')]" position="inside">
-                    <field name="stage_id"/>
+                <field name="stage_id"/>
             </xpath>
-
         </field>
     </record>
 
@@ -29,19 +33,35 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
 
-            <!-- hide the original priority parameter, to the left of the name -->
-            <!-- <xpath expr="//field[@name='priority']" position="attributes">
-                    <attribute name="invisible">True</attribute>
-            </xpath> -->
-                <field name="partner_id" position="after">
-                        <field name="team_id"/>
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <p>Ticket Id=<field name="id"/></p>
+            </xpath>
 
-                </field>
+            <field name="partner_id" position="after">
+                <field name="team_id"/>
+            </field>
 
-                <!-- shows the priority after the user_ids -->
-                <field name="user_ids" position="after">
-                    <field name="prioridad"/>
-                </field>
+            <!-- shows the priority after the user_ids -->
+            <field name="user_ids" position="after">
+                <field name="prioridad"/>
+
+                <!-- solo mostrar categorias que tengan el active en True -->
+                <field name="category_id" domain="[('activa', '=', True)]" />
+                <!-- <field name="category_id" domain="[('activa', '=', True)]" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> -->
+
+                <!-- solo se muestran las subcategorias que estan asociadas a la categoria seleccionada
+                solo mostrar subcategorias que tengan el active en True
+                si no hay una categoria seleccionada, hacer el campo subcategoria invisible -->
+                <field name="subcategory_id" domain="[('category_id', '=', category_id), ('activa', '=', True)]" invisible= "category_id == False" />
+
+            </field>
+
+            <!-- agrega una pestaña extra llamada recursos -->
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page name="task_resources" string="Recursos">
+                    <field name="resource_ids"/>
+                </page>
+            </xpath>
 
         </field>
     </record>
@@ -53,9 +73,14 @@
         <field name="inherit_id" ref="project.project_task_view_tree_main_base"/>
         <field name="arch" type="xml">
 
+            <field name="user_ids" position="before">
+                <field name="team_id"/>
+            </field>
+
             <field name="user_ids" position="after">
-                <!-- <field name="priority" widget="priority_switch" class="me-3"/> -->
                 <field name="prioridad"/>
+                <field name="category_id"/>
+                <field name="subcategory_id"/>
             </field>
 
         </field>

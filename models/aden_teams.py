@@ -26,8 +26,9 @@ class Team(models.Model):
         readonly=True
     )
 
+    # uses res.users instead of res.partner to not show the sales fields, etc
     user_ids_members = fields.One2many(
-        comodel_name='res.users',  # uses res.users instead of res.partner to not show the sales fields, etc
+        comodel_name='res.users',
         inverse_name="team_id",
         string='Members',
         help='Team Members',

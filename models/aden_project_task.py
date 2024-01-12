@@ -1,5 +1,8 @@
 from odoo import models, fields, api
 
+WARNING_MSG_NO_TEAM = "este usuario no esta asociado a un equipo, asegurate de agregarlo a uno"
+WARNING_MSG_TITLE_NO_TEAM = 'Usuario sin equipo!'
+
 
 class AdenTask(models.Model):
     _description = 'Customized version of project.task for ADEN'
@@ -19,8 +22,9 @@ class AdenTask(models.Model):
         string="Equipo asignado",
     )
 
+    # uses res.users instead of res.partner to not show the sales fields, etc
     resource_ids = fields.One2many(
-        comodel_name='aden_project.resources',  # uses res.users instead of res.partner to not show the sales fields, etc
+        comodel_name='aden_project.resources',
         inverse_name="task_id",
         string='Recurso',
     )
@@ -41,17 +45,16 @@ class AdenTask(models.Model):
         for task in self:
 
             if task.user_ids:
-                # toma al primer usuario en los user_ids
+                # take the first user of the user_ids task
                 first_user = task.user_ids[0]
 
                 if not first_user.team_id:
                     task.user_ids = False
-                    # muestra un pop up de error
+                    # shows a pop up error
                     return {
                         'warning': {
-                            'title': 'Usuario sin equipo!',
-                            'message': f"El usuario {first_user.name} no esta asociado a un equipo, asegurate de agregarlo a uno"}
+                            'title': WARNING_MSG_TITLE_NO_TEAM,
+                            'message': f"{first_user.name} {WARNING_MSG_NO_TEAM}"}
                     }
-
-                # asigna el equipo del usuario al equipo del la task
+                # assign the user team to the task
                 task.team_id = first_user.team_id

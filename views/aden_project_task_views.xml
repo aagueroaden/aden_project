@@ -11,6 +11,7 @@
             <xpath expr="//div[hasclass('oe_kanban_bottom_right')]" position="inside">
                 <group>
                     <field name="prioridad" />
+
                     <!-- agrego el equipo de forma invisible para que: 
                     cuando se asigna un usuario a una task en va lista kanban, 
                     tambien se le asigne el equipo, 
@@ -46,13 +47,22 @@
                 <field name="prioridad"/>
 
                 <!-- solo mostrar categorias que tengan el active en True -->
-                <field name="category_id" domain="[('activa', '=', True)]" />
-                <!-- <field name="category_id" domain="[('activa', '=', True)]" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/> -->
+                <field 
+                name="category_id" 
+                domain="[('activa', '=', True)]" 
+                options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                />
 
                 <!-- solo se muestran las subcategorias que estan asociadas a la categoria seleccionada
                 solo mostrar subcategorias que tengan el active en True
-                si no hay una categoria seleccionada, hacer el campo subcategoria invisible -->
-                <field name="subcategory_id" domain="[('category_id', '=', category_id), ('activa', '=', True)]" invisible= "category_id == False" />
+                si no hay una categoria seleccionada, hacer el campo subcategoria invisible 
+                no permite ir a ver el form del modelo subcategoria con el options -->
+                <field 
+                name="subcategory_id" 
+                domain="[('category_id', '=', category_id), ('activa', '=', True)]" 
+                invisible= "category_id == False" 
+                options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
+                />
 
             </field>
 

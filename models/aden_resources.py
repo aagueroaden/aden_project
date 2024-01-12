@@ -23,7 +23,8 @@ class Recursos(models.Model):
         required=True,
     )
 
-    # ondelete="cascade" when you delete the task, the resource associated with that task are deleted also
+    # ondelete="cascade" when you delete the task,
+    # the resource associated with that task are deleted also
     task_id = fields.Many2one(
         string="Recursos",
         comodel_name="project.task",

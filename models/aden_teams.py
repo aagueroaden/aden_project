@@ -1,43 +1,40 @@
 from odoo import fields, models
 
 
-class User(models.Model):
-    # _inherit = "res.users"
+class Partner(models.Model):
     _inherit = "res.partner"
-    _description = "Extension of res.partner, adding extra features to users"
 
     team_id = fields.Many2one(
         comodel_name="aden_project.team",
-        string="Project Team"
+        string="Equipo"
     )
 
 
 class Team(models.Model):
     _name = "aden_project.team"
-    _description = "Teams for the Aden project system, allow users to be part of a team"
+    _description = "Project team"
 
-    name = fields.Char(string='Team Name', required=True)
-    team_area = fields.Char(string='Team Area', required=True)
+    name = fields.Char(string='Nombre', required=True)
+    team_area = fields.Char(string='Área', required=True)
 
     project_ids = fields.One2many(
         comodel_name='project.project',
         inverse_name="team_id",
-        string='Project',
+        string='Projectos',
         readonly=True
     )
 
-    # uses res.users instead of res.partner to not show the sales fields, etc
     user_ids_members = fields.One2many(
         comodel_name='res.users',
         inverse_name="team_id",
-        string='Members',
-        help='Team Members',
+        string='Integrantes',
+        help='Integrantes del Equipo',
         readonly=True
     )
 
     task_ids = fields.One2many(
         comodel_name='project.task',
         inverse_name="team_id",
-        string='Task',
+        string='Tareas',
         readonly=True
     )

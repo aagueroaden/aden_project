@@ -5,9 +5,9 @@
         <field name="model">aden_project.subcategory</field>
         <field name="arch" type="xml">
 
-            <tree string="SubCategorias">
+            <tree string="Sub-Categorías">
                 <field name="name"/>
-                <field name="activa"/>
+                <field name="active"/>
                 <field name="category_id" />
                 <field name="description" />
             </tree>
@@ -15,29 +15,15 @@
         </field>
     </record>
 
-    <!-- <record id="view_aden_project_subcategory_form" model="ir.ui.view">
-        <field name="name">aden.project.subcategory.form</field>
-        <field name="model">aden_project.subcategory</field>
-        <field name="arch" type="xml">
-            <form>
-                <field name="name"/>
-                <field name="active"/>
-                <field name="category_id" />
-                <field name="description" />
-            </form>
-
-        </field>
-    </record> -->
-
     <record model="ir.actions.act_window" id="aden_project_subcategory">
-        <field name="name">Sub-Categorias</field>
+        <field name="name">Sub-Categorías</field>
         <field name="res_model">aden_project.subcategory</field>
         <field name="view_mode">tree,form</field>
     </record>
 
 
     <menuitem
-    name="Sub-Categorias"
+    name="Sub-Categorías"
     id="menu_project_subcategory"
     parent="project.menu_project_config"
     action="aden_project_subcategory"

@@ -34,7 +34,7 @@
         <field name="model">aden_project.team</field>
         <field name="arch" type="xml">
 
-            <tree string="Project Teams">
+            <tree string="Equipos">
                         <field name="name"/>
                         <field name="team_area"/>
                         <field name="user_ids_members"/>
@@ -46,24 +46,17 @@
 
 
     <record model="ir.actions.act_window" id="aden_project_team">
-        <field name="name">Project Team</field>
+        <field name="name">Equipos</field>
         <field name="res_model">aden_project.team</field>
         <field name="view_mode">tree,form</field>
     </record>
 
 
     <menuitem
-    name="Projects Teams"
+    name="Equipos"
     id="menu_project_teams"
     parent="project.menu_project_config"
     action="aden_project_team"
     />
-
-    <!-- <menuitem
-    name="Users"
-    id="menu_project_teams"
-    parent="project.menu_project_config"
-    action="aden_project_users"
-    /> -->
 
 </odoo>

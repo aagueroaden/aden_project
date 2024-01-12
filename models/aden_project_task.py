@@ -5,7 +5,6 @@ WARNING_MSG_TITLE_NO_TEAM = 'Usuario sin equipo!'
 
 
 class AdenTask(models.Model):
-    _description = 'Customized version of project.task for ADEN'
     _inherit = 'project.task'
 
     prioridad = fields.Selection(selection=[
@@ -22,21 +21,20 @@ class AdenTask(models.Model):
         string="Equipo asignado",
     )
 
-    # uses res.users instead of res.partner to not show the sales fields, etc
     resource_ids = fields.One2many(
-        comodel_name='aden_project.resources',
+        comodel_name='aden_project.resource',
         inverse_name="task_id",
-        string='Recurso',
+        string='Recursos',
     )
 
     category_id = fields.Many2one(
         comodel_name="aden_project.category",
-        string="Categoria"
+        string="Categoría"
     )
 
     subcategory_id = fields.Many2one(
         comodel_name="aden_project.subcategory",
-        string="Sub-Categoria"
+        string="Sub-Categoría"
     )
 
     @api.onchange('user_ids')

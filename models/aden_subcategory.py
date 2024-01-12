@@ -3,14 +3,14 @@ from odoo import fields, models
 
 class SubCategory(models.Model):
     _name = "aden_project.subcategory"
-    _description = "Adding sub-categories to the task for the project system"
+    _description = "Task sub-category"
 
-    name = fields.Char(string="Sub-Categoria")
-    activa = fields.Boolean(string="Activa", default=True, required=True,)
+    name = fields.Char(string="Sub-Categoría")
+    active = fields.Boolean(string="Activa", default=True, required=True,)
 
     category_id = fields.Many2one(
         comodel_name="aden_project.category",
-        string="Categoria",
+        string="Categoría",
         required=True,
     )
 
@@ -19,6 +19,6 @@ class SubCategory(models.Model):
     task_ids = fields.One2many(
         comodel_name='project.task',
         inverse_name="subcategory_id",
-        string='Tasks',
+        string='Tareas',
         readonly=True,
     )

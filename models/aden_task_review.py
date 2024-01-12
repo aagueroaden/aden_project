@@ -1,11 +1,9 @@
 from odoo import fields, models
 
 
-class CodeReview(models.Model):
-    _name = "aden_project.code_review"
-    _description = """
-    Seccion de code review para las tareas project.task para el sistema de proyectos de ADEN
-    """
+class TaskReview(models.Model):
+    _name = "aden_project.task_review"
+    _description = "Task review"
 
     name = fields.Char(string="Review", size=24, required=True)
     date_of_review = fields.Datetime(string='Fecha revision', index=True, copy=False, tracking=True)
@@ -18,4 +16,3 @@ class CodeReview(models.Model):
     ),
     commentary = fields.Text(string="Comentarios"),
     # TODO
-

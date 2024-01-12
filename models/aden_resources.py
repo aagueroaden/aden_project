@@ -1,11 +1,9 @@
 from odoo import fields, models
 
 
-class Recursos(models.Model):
-    _name = "aden_project.resources"
-    _description = """
-    Permite agregar nombres y referencias(links) de recursos externos/internos a tasks
-    """
+class Resource(models.Model):
+    _name = "aden_project.resource"
+    _description = "Task Resource"
 
     name = fields.Char(
         string="Nombre",

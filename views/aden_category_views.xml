@@ -5,10 +5,10 @@
         <field name="model">aden_project.category</field>
         <field name="arch" type="xml">
 
-            <tree string="Categorias">
+            <tree string="Categorías">
                         <field name="name"/>
                         <field name="description"/>
-                        <field name="activa"/>
+                        <field name="active"/>
                         <field name="subcategory_ids"/>
             </tree>
 
@@ -17,14 +17,14 @@
 
 
     <record model="ir.actions.act_window" id="aden_project_category">
-        <field name="name">Categoria</field>
+        <field name="name">Categoría</field>
         <field name="res_model">aden_project.category</field>
         <field name="view_mode">tree,form</field>
     </record>
 
 
     <menuitem
-    name="Categoria"
+    name="Categorías"
     id="menu_project_category"
     parent="project.menu_project_config"
     action="aden_project_category"

@@ -49,7 +49,6 @@
                 <!-- solo mostrar categorias que tengan el active en True -->
                 <field 
                 name="category_id" 
-                domain="[('activa', '=', True)]" 
                 options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
                 />
 
@@ -59,7 +58,7 @@
                 no permite ir a ver el form del modelo subcategoria con el options -->
                 <field 
                 name="subcategory_id" 
-                domain="[('category_id', '=', category_id), ('activa', '=', True)]" 
+                domain="[('category_id', '=', category_id)]" 
                 invisible= "category_id == False" 
                 options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
                 />

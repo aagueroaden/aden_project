@@ -10,7 +10,7 @@
 
             <xpath expr="//div[hasclass('oe_kanban_bottom_right')]" position="inside">
                 <group>
-                    <field name="prioridad" />
+                    <field name="task_priority" />
 
                     <!-- agrego el equipo de forma invisible para que: 
                     cuando se asigna un usuario a una task en va lista kanban, 
@@ -35,7 +35,7 @@
         <field name="arch" type="xml">
 
             <xpath expr="//div[hasclass('oe_title')]" position="inside">
-                <p>Ticket Id=<field name="id"/></p>
+                <field name="id" string="ID" readonly="1"/>
             </xpath>
 
             <field name="partner_id" position="after">
@@ -44,7 +44,7 @@
 
             <!-- shows the priority after the user_ids -->
             <field name="user_ids" position="after">
-                <field name="prioridad"/>
+                <field name="task_priority"/>
 
                 <!-- solo mostrar categorias que tengan el active en True -->
                 <field 
@@ -70,6 +70,11 @@
                 <page name="task_resources" string="Recursos">
                     <field name="resource_ids"/>
                 </page>
+
+                <page name="task_reviews" string="Revisión de código">
+                    <field name="task_review_ids"/>
+                </page>
+
             </xpath>
 
         </field>
@@ -87,7 +92,7 @@
             </field>
 
             <field name="user_ids" position="after">
-                <field name="prioridad"/>
+                <field name="task_priority"/>
                 <field name="category_id"/>
                 <field name="subcategory_id"/>
             </field>

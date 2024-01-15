@@ -1,20 +1,21 @@
 from odoo import models, fields, api
+from odoo.exceptions import ValidationError
 
-WARNING_MSG_NO_TEAM = "este usuario no esta asociado a un equipo, asegurate de agregarlo a uno"
+WARNING_MSG_NO_TEAM = "no esta asociado a un equipo, asegurese de que este agregado a uno"
 WARNING_MSG_TITLE_NO_TEAM = 'Usuario sin equipo!'
 
 
 class AdenTask(models.Model):
     _inherit = 'project.task'
 
-    prioridad = fields.Selection(selection=[
+    task_priority = fields.Selection(selection=[
         ('5', '5 [Muy Baja]'),
         ('4', '4 [Baja]'),
         ('3', '3 [Media]'),
         ('2', '2 [Alta]'),
         ('1', '1 [Muy Alta]'),
         ('0', '0 [Urgente]'),
-    ], string='Prioridad', default='5', tracking=True)
+    ], string='Prioridad', default='5')
 
     team_id = fields.Many2one(
         comodel_name="aden_project.team",
@@ -37,22 +38,25 @@ class AdenTask(models.Model):
         string="Sub-Categoría"
     )
 
-    @api.onchange('user_ids')
+    task_review_ids = fields.One2many(
+        comodel_name="aden_project.task_review",
+        inverse_name="task_id",
+        string="Revisiones de código",
+    )
+
+    @api.constrains('user_ids')
     def _onchange_user_ids_add_remove_team_id(self):
         # need to make a "for task in self", to also work in the kanban/list views
         for task in self:
+            for user in task.user_ids:
 
-            if task.user_ids:
-                # take the first user of the user_ids task
-                first_user = task.user_ids[0]
+                # if the user does not have a team assigned
+                if not user.team_id:
 
-                if not first_user.team_id:
-                    task.user_ids = False
-                    # shows a pop up error
-                    return {
-                        'warning': {
-                            'title': WARNING_MSG_TITLE_NO_TEAM,
-                            'message': f"{first_user.name} {WARNING_MSG_NO_TEAM}"}
-                    }
-                # assign the user team to the task
-                task.team_id = first_user.team_id
+                    raise ValidationError(
+                        f"{WARNING_MSG_TITLE_NO_TEAM}\n{user.name} {WARNING_MSG_NO_TEAM}"
+                    )
+
+                # if the task does not have a team assigned, assign the team of the user
+                if not task.team_id:
+                    task.team_id = user.team_id

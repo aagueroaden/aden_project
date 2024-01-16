@@ -10,12 +10,12 @@ class Partner(models.Model):
     )
 
     # task that are assigned to this user to review
-    task_reviewer_ids = fields.One2many(
-        comodel_name="aden_project.task_review",
-        inverse_name='task_reviewer',
-        string="Tareas asignadas como Revisor de Codigo",
-        readonly=True,
-    )
+    # task_reviewer_ids = fields.One2many(
+    #     comodel_name="aden_project.task_review",
+    #     inverse_name='task_reviewer',
+    #     string="Tareas asignadas como Revisor de Codigo",
+    #     readonly=True,
+    # )
 
 
 class Team(models.Model):
@@ -28,7 +28,7 @@ class Team(models.Model):
     project_ids = fields.One2many(
         comodel_name='project.project',
         inverse_name="team_id",
-        string='Projectos',
+        string='Proyectos',
         readonly=True
     )
 

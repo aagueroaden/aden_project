@@ -2,11 +2,9 @@
 {
     'name': "Aden - Proyectos",
 
-    'summary': "Customized project base module to Aden nescesities",
+    'summary': "Customized project module for Aden Business School",
 
-    'description': """
-Long description of module's purpose
-    """,
+    'description': "Customized project module for Aden Business School",
 
     'author': "Aden Business School",
 

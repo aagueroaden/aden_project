@@ -14,7 +14,7 @@ class SubCategory(models.Model):
         required=True,
     )
 
-    description = fields.Text(string="Descripcion")
+    description = fields.Text(string="Descripción")
 
     task_ids = fields.One2many(
         comodel_name='project.task',

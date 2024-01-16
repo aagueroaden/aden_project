@@ -11,7 +11,7 @@ class Resource(models.Model):
     )
 
     description = fields.Char(
-        string="Descripcion",
+        string="Descripción",
         required=True,
     )
 

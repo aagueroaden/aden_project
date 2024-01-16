@@ -12,10 +12,10 @@
                 <group>
                     <field name="task_priority" />
 
-                    <!-- agrego el equipo de forma invisible para que: 
-                    cuando se asigna un usuario a una task en va lista kanban, 
-                    tambien se le asigne el equipo, 
-                    ya que si la vista kanban no tiene el campo de team, 
+                    <!-- agrego el equipo de forma invisible para que:
+                    cuando se asigna un usuario a una task en va lista kanban,
+                    tambien se le asigne el equipo,
+                    ya que si la vista kanban no tiene el campo de team,
                     no va a asignar equipo a la task -->
                     <field name="team_id" invisible="1"/>
                 </group>
@@ -34,7 +34,7 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+            <xpath expr="//field[@name='user_ids']" position="before">
                 <field name="id" string="ID" readonly="1"/>
             </xpath>
 
@@ -47,19 +47,19 @@
                 <field name="task_priority"/>
 
                 <!-- solo mostrar categorias que tengan el active en True -->
-                <field 
-                name="category_id" 
+                <field
+                name="category_id"
                 options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
                 />
 
                 <!-- solo se muestran las subcategorias que estan asociadas a la categoria seleccionada
                 solo mostrar subcategorias que tengan el active en True
-                si no hay una categoria seleccionada, hacer el campo subcategoria invisible 
+                si no hay una categoria seleccionada, hacer el campo subcategoria invisible
                 no permite ir a ver el form del modelo subcategoria con el options -->
-                <field 
-                name="subcategory_id" 
-                domain="[('category_id', '=', category_id)]" 
-                invisible= "category_id == False" 
+                <field
+                name="subcategory_id"
+                domain="[('category_id', '=', category_id)]"
+                invisible= "category_id == False"
                 options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"
                 />
 
@@ -71,10 +71,9 @@
                     <field name="resource_ids"/>
                 </page>
 
-                <page name="task_reviews" string="Revisión de código">
+                <!-- <page name="task_reviews" string="Revisiones de Codigo">
                     <field name="task_review_ids"/>
-                </page>
-
+                </page> -->
             </xpath>
 
         </field>

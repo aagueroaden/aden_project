@@ -20,8 +20,9 @@ class TaskReview(models.Model):
         string="Tarea",
         required=True,
         readonly=True,
+        ondelete="cascade"
     )
-    # task_reviewer = fields.Many2one(
-    #     comodel_name='res.users',
-    #     string="Revisor de Codigo"
-    # )
+    task_reviewer = fields.Many2one(
+        comodel_name='res.users',
+        string="Revisor de Código"
+    )

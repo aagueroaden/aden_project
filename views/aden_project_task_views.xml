@@ -71,9 +71,9 @@
                     <field name="resource_ids"/>
                 </page>
 
-                <!-- <page name="task_reviews" string="Revisiones de Codigo">
+                <page name="task_reviews" string="Revisión de código">
                     <field name="task_review_ids"/>
-                </page> -->
+                </page>
             </xpath>
 
         </field>

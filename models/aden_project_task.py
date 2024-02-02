@@ -38,11 +38,11 @@ class AdenTask(models.Model):
         string="Sub-Categoría"
     )
 
-    # task_review_ids = fields.One2many(
-    #     comodel_name="aden_project.task_review",
-    #     inverse_name="task_id",
-    #     string="Revisiones de código",
-    # )
+    task_review_ids = fields.One2many(
+        comodel_name="aden_project.task_review",
+        inverse_name="task_id",
+        string="Revisiones de código",
+    )
 
     @api.constrains('user_ids')
     def _onchange_user_ids_add_remove_team_id(self):

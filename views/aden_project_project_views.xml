@@ -37,7 +37,7 @@
 
             <xpath expr="//div[hasclass('oe_kanban_bottom_left')]" position="inside">
                 <group>
-                    <p>Equipo <field name="team_id" /></p>
+                    <field name="team_id" string="Equipo" readonly="1"/>
                 </group>
             </xpath>
 
